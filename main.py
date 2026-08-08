@@ -36,15 +36,12 @@ gemini=OpenAI(api_key=gemini_api_key, base_url=gemini_url)
 groq_llama=OpenAI(api_key=groq_llama_key, base_url=groq_url)
 groq_openai=OpenAI(api_key=groq_openai_key, base_url=groq_url)
 
-message="Hello Gemini! Tell me about your self in a snarky way and keep it short"
+message="""You toss 2 coins. One of them is heads. What's the probability the other is tails? Answer with the probability only."""
 
 messages=[
           {"role":"system","content":"You are a helpful assistant."},
           {"role":"user","content":message}
           ]
-
-groq_llama_response=groq_llama.chat.completions.create(model=groq_llama_model, messages=messages)
-groq_openai_response=groq_openai.chat.completions.create(model=groq_openai_model, messages=messages)
 
 print("\n--- Fetching Responses ---")
 
@@ -55,11 +52,13 @@ except Exception as e:
     print(f"Gemini response error: {e}\n")
 
 try:
+    groq_llama_response=groq_llama.chat.completions.create(model=groq_llama_model, messages=messages)
     print(f"Groq Llama Response: {groq_llama_response.choices[0].message.content}\n")
 except Exception as e:
     print(f"Groq Llama response error: {e}\n")
 
 try:
+    groq_openai_response=groq_openai.chat.completions.create(model=groq_openai_model, messages=messages, reasoning_effort="medium")
     print(f"Groq OpenAI Response: {groq_openai_response.choices[0].message.content}\n")
 except Exception as e:
     print(f"Groq OpenAI response error: {e}\n")

@@ -106,3 +106,41 @@ git push origin main
 Best Practice: Create a Template FileSince other developers (or your future self) will need to know what API keys your script expects without seeing the actual secret values, create a dummy template file named .env.example:text# .env.example (Safe to push to GitHub)
 GROQ_API_KEY_ONE=your_llama_key_here
 GROQ_API_KEY_TWO=your_openai_key_here
+
+=======================================================
+
+To install langchain
+=> pip install langchain_openai
+
+To install litle llm
+=> pip install litellm python-dotenv
+
+======================================================================================
+
+# Connect to OpenAI client library
+
+# A thin wrapper around calls to HTTP endpoints
+
+openai = OpenAI()
+
+# For Gemini, DeepSeek and Groq, we can use the OpenAI python client
+
+# Because Google and DeepSeek have endpoints compatible with OpenAI
+
+# And OpenAI allows you to change the base_url
+
+anthropic_url = "https://api.anthropic.com/v1/"
+gemini_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+deepseek_url = "https://api.deepseek.com"
+groq_url = "https://api.groq.com/openai/v1"
+grok_url = "https://api.x.ai/v1"
+openrouter_url = "https://openrouter.ai/api/v1"
+ollama_url = "http://localhost:11434/v1"
+
+anthropic = OpenAI(api_key=anthropic_api_key, base_url=anthropic_url)
+gemini = OpenAI(api_key=google_api_key, base_url=gemini_url)
+deepseek = OpenAI(api_key=deepseek_api_key, base_url=deepseek_url)
+groq = OpenAI(api_key=groq_api_key, base_url=groq_url)
+grok = OpenAI(api_key=grok_api_key, base_url=grok_url)
+openrouter = OpenAI(base_url=openrouter_url, api_key=openrouter_api_key)
+ollama = OpenAI(api_key="ollama", base_url=ollama_url)
